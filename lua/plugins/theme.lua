@@ -1,0 +1,134 @@
+-- return {
+--   -- 安装 Zephyr 主题插件
+--   { "glepnir/zephyr-nvim" },
+--
+--   -- 配置 LazyVim 使用 Zephyr 主题
+--   {
+--     "LazyVim/LazyVim",
+--     opts = {
+--       colorscheme = "zephyr", -- 设置主题为 zephyr
+--       transparent = true, -- 设置背景透明
+--       styles = {
+--         sidebars = "transparent", -- 侧边栏透明
+--         floats = "transparent", -- 浮动窗口透明
+--       },
+--     },
+--   },
+-- }
+
+-- return {
+--   {
+--     "folke/tokyonight.nvim",
+--     config = function()
+--       require("tokyonight").setup({
+--         style = "night", -- The theme comes in three styles, `storm`, `moon`, a darker variant `night` and `day`
+--         light_style = "day", -- The theme is used when the background is set to light
+--         transparent = true, -- Enable this to disable setting the background color
+--         terminal_colors = true, -- Configure the colors used when opening a `:terminal` in Neovim
+--         styles = {
+--           comments = { italic = true },
+--           keywords = { italic = true },
+--           functions = { italic = true, bold = true },
+--           variables = { italic = true },
+--           strings = { italic = true, underline = true },
+--           numbers = { italic = true, underline = true },
+--           types = { italic = true, underline = true },
+--           constants = { italic = true, underline = true },
+--           sidebars = "transparent", -- style for sidebars, see below
+--           floats = "transparent", -- style for floating windows
+--         },
+--         sidebars = { "qf", "help" }, -- Set a darker background on sidebar-like windows. For example: `["qf", "vista_kind", "terminal", "packer"]`
+--         day_brightness = 0.3, -- Adjusts the brightness of the colors of the **Day** style. Number between 0 and 1, from dull to vibrant colors
+--         hide_inactive_statusline = false, -- Enabling this option, will hide inactive statuslines and replace them with a thin border instead. Should work with the standard **StatusLine** and **LuaLine**.
+--         dim_inactive = true, -- dims inactive windows
+--         lualine_bold = true, -- When `true`, section headers in the lualine theme will be bold
+--         on_colors = function(colors)
+--           colors.border = "#ef9020"
+--         end,
+--         on_highlights = function(hl, c)
+--           hl.Visual = { bg = "#6D6BC8" }
+--         end,
+--       })
+--       vim.cmd([[colorscheme tokyonight]])
+--     end,
+--   },
+-- }
+
+-- return {
+--   {
+--     "catppuccin/nvim",name = "catppuccin", priority = 1000,
+--     config = function()
+--       require("catppuccin").setup({
+--         flavour = "mocha", -- latte, frappe, macchiato, mocha
+--         background = { -- :h background
+--           light = "latte",
+--           dark = "mocha",
+--         },
+--         transparent_background = true, -- disables setting the background color.
+--         float = {
+--           transparent = false, -- enable transparent floating windows
+--           solid = true, -- use solid styling for floating windows, see |winborder|
+--         },
+--         show_end_of_buffer = false, -- shows the '~' characters after the end of buffers
+--         term_colors = false, -- sets terminal colors (e.g. `g:terminal_color_0`)
+--         dim_inactive = {
+--           enabled = false, -- dims the background color of inactive window
+--           shade = "dark",
+--           percentage = 0.15, -- percentage of the shade to apply to the inactive window
+--         },
+--         no_italic = false, -- Force no italic
+--         no_bold = false, -- Force no bold
+--         no_underline = false, -- Force no underline
+--         styles = { -- Handles the styles of general hi groups (see `:h highlight-args`):
+--           comments = { "italic" ,"bold"}, -- Change the style of comments
+--           conditionals = { "italic" ,"bold"},
+--           loops = { "italic" ,"bold"},
+--           functions = { "italic" ,"bold"},
+--           keywords = { "italic" ,"bold"},
+--           strings = { "italic" ,"bold"},
+--           variables = { "italic" ,"bold"},
+--           -- variables = { "bold"},
+--           numbers = { "italic" ,"bold"},
+--           booleans = { "italic" ,"bold"},
+--           properties = {"italic" ,"bold"},
+--           types = { "italic" ,"bold"},
+--           operators = { "italic" ,"bold"},
+--           -- miscs = {}, -- Uncomment to turn off hard-coded styles
+--         },
+--         color_overrides = {},
+--         custom_highlights = {},
+--         default_integrations = true,
+--         auto_integrations = false,
+--         integrations = {
+--           cmp = true,
+--           gitsigns = true,
+--           nvimtree = true,
+--           treesitter = true,
+--           notify = false,
+--           mini = {
+--             enabled = true,
+--             indentscope_color = "",
+--           },
+--           -- For more plugins integrations please scroll down (https://github.com/catppuccin/nvim#integrations)
+--         },
+--       })
+--
+--       -- setup must be called before loading
+--       vim.cmd.colorscheme("catppuccin")
+--     end,
+--   },
+-- }
+
+-- return {
+--   {
+--     "folke/tokyonight.nvim",
+--     opts = {
+--       transparent = true,
+--       styles = {
+--         sidebars = "transparent",
+--         floats = "transparent",
+--       },
+--     },
+--   },
+-- }
+return {}

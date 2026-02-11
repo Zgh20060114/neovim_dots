@@ -6,3 +6,35 @@
 --
 -- Or remove existing autocmds by their group name (which is prefixed with `lazyvim_` for the defaults)
 -- e.g. vim.api.nvim_del_augroup_by_name("lazyvim_wrap_spell")
+
+-- vim.api.nvim_create_autocmd({ "FileType" }, {
+--   pattern = { "c", "cpp", "md", "txt", "c.snippets", "cpp.snippets", "cu" },
+--   callback = function()
+--     vim.b.autoformat = true
+--     vim.opt_local.expandtab = true
+--     vim.opt_local.tabstop = 2
+--     vim.opt_local.shiftwidth = 2
+--     vim.opt_local.softtabstop = 2
+--   end,
+-- })
+-- vim.api.nvim_create_autocmd("FileType", {
+--   pattern = { "markdown", "txt" },
+--   callback = function()
+--     vim.opt_local.spell = false
+--   end,
+-- })
+-- vim.api.nvim_create_autocmd("FileType", {
+--   pattern = "cuda",
+--   callback = function()
+--     vim.bo.commentstring = "// %s"
+--     -- 或者使用多行注释风格
+--     -- vim.bo.commentstring = "/* %s */"
+--   end,
+-- })
+--
+-- vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
+--   pattern = "*.launch",
+--   callback = function()
+--     vim.bo.filetype = "xml" -- 强制识别为 XML 类型
+--   end,
+-- })
