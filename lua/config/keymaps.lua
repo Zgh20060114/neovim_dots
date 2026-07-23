@@ -341,6 +341,7 @@ vim.keymap.set({ "v", "n" }, "gO", "<cmd>split | ClangdSwitchSourceHeader<CR>", 
 vim.keymap.set({ "v", "n" }, "g<C-o>", "<cmd>vsplit | ClangdSwitchSourceHeader<CR>", { silent = true })
 
 vim.keymap.set({ "n" }, "<S-Tab>", "<C-o>")
+
 -- vim.keymap.set({'i'}, '<C-Space>', '<Space>')
 
 -- vim.keymap.set({'v', 'n'}, 'gp', ':GPT<Space>')
@@ -381,5 +382,78 @@ augroup END
 --         ]]
 --     end, { desc = 'Restart NeoVim' })
 -- end
+
+--&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+-- 浮动终端切换（Toggle）
+local float_term_buf = nil
+local float_term_win = nil
+
+local function toggle_float_terminal()
+  -- 情况1：窗口存在 → 关闭窗口（保留缓冲区）
+  if float_term_win and vim.api.nvim_win_is_valid(float_term_win) then
+    vim.api.nvim_win_close(float_term_win, true)
+    float_term_win = nil
+    return
+  end
+
+  -- 情况2：窗口不存在，但缓冲区存在且有效 → 复用缓冲区
+  if float_term_buf and vim.api.nvim_buf_is_valid(float_term_buf) then
+    -- 获取编辑器尺寸，计算浮动窗口大小
+    local width = math.floor(vim.o.columns * 0.8)
+    local height = math.floor(vim.o.lines * 0.7)
+    local row = math.floor((vim.o.lines - height) / 2)
+    local col = math.floor((vim.o.columns - width) / 2)
+
+    local opts = {
+      relative = "editor",
+      width = width,
+      height = height,
+      row = row,
+      col = col,
+      style = "minimal",
+      border = "rounded",
+    }
+
+    -- 用已有缓冲区创建浮动窗口
+    local win = vim.api.nvim_open_win(float_term_buf, true, opts)
+    float_term_win = win
+
+    -- 进入插入模式
+    vim.cmd("startinsert")
+    return
+  end
+
+  -- 情况3：缓冲区不存在 → 创建全新的缓冲区 + 终端
+  local buf = vim.api.nvim_create_buf(false, true)
+  float_term_buf = buf
+
+  -- 计算浮动窗口大小
+  local width = math.floor(vim.o.columns * 0.8)
+  local height = math.floor(vim.o.lines * 0.7)
+  local row = math.floor((vim.o.lines - height) / 2)
+  local col = math.floor((vim.o.columns - width) / 2)
+
+  local opts = {
+    relative = "editor",
+    width = width,
+    height = height,
+    row = row,
+    col = col,
+    style = "minimal",
+    border = "rounded",
+  }
+
+  local win = vim.api.nvim_open_win(buf, true, opts)
+  float_term_win = win
+
+  -- 在窗口中启动终端
+  vim.fn.termopen(vim.o.shell)
+
+  -- 进入插入模式
+  vim.cmd("startinsert")
+end
+-- 绑定快捷键 <leader>tt
+vim.keymap.set("n", "<leader>tt", toggle_float_terminal, { desc = "Toggle Float Terminal" })
+--&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
 
 return vim.keymap.set

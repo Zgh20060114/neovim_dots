@@ -1,6 +1,8 @@
 -- bootstrap lazy.nvim, LazyVim and your plugins
 require("config.lazy")
 
+vim.opt.cursorcolumn = true
+
 -- vim.opt_local.wrap = true
 -- vim.opt_local.linebreak = true -- 避免单词被拆开折叠
 -- vim.opt_local.breakindent = true -- 为折叠行添加缩进
@@ -23,6 +25,8 @@ require("config.lazy")
 -- vim.g.mason_url = "https://github.moeyy.xyz/"
 --
 -- require("catppuccin").load("mocha")
+vim.env.HTTP_PROXY = "http://127.0.0.1:7897"
+vim.env.HTTPS_PROXY = "http://127.0.0.1:7897"
 
 vim.api.nvim_set_keymap("i", "<C-S-v>", '<Esc>"+p', { noremap = true })
 vim.keymap.set("v", "<leader>{", "c{}<Esc>P", { desc = "Wrap selection with {}" })
@@ -43,29 +47,3 @@ vim.api.nvim_create_autocmd({ "InsertLeave", "TextChanged" }, {
 --   vim.api.nvim_set_hl(0, "NormalFloat", { bg = "none" })
 -- end
 -- Transparent()
-
--- local function fcitx5(args)
---   -- 同步执行，便于调试
---   vim.system(vim.list_extend({ "fcitx5-remote" }, args), { detach = true })
--- end
---
--- -- 离开插入模式：切到英文
--- vim.api.nvim_create_autocmd("InsertLeave", {
---   callback = function()
---     fcitx5({ "-s", "keyboard-cn" })
---   end,
--- })
---
--- -- 进入插入模式：恢复上一次输入法
--- vim.api.nvim_create_autocmd("InsertEnter", {
---   callback = function()
---     fcitx5({ "-o" })
---   end,
--- })
---
--- -- （可选）命令行模式也保持英文
--- vim.api.nvim_create_autocmd("CmdlineEnter", {
---   callback = function()
---     fcitx5({ "-s", "keyboard-cn" })
---   end,
--- })
