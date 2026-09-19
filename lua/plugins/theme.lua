@@ -131,6 +131,7 @@
 --     },
 --   },
 -- }
+
 return {
   {
     "ellisonleao/gruvbox.nvim",
@@ -143,3 +144,13 @@ return {
     opts = ...,
   },
 }
+
+-- return {
+--   -- 1. 告诉 LazyVim 框架使用你的自定义主题
+--   {
+--     "LazyVim/LazyVim",
+--     opts = {
+--       colorscheme = "bloodvoid", -- 这里的名字必须和 lua/custom_theme.lua 的文件名一致
+--     },
+--   },
+-- }
