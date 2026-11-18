@@ -1,7 +1,7 @@
 -- bootstrap lazy.nvim, LazyVim and your plugins
 require("config.lazy")
 
-vim.opt.cursorcolumn = true
+-- vim.opt.cursorcolumn = true
 
 -- vim.opt_local.wrap = true
 -- vim.opt_local.linebreak = true -- 避免单词被拆开折叠
@@ -39,6 +39,8 @@ vim.api.nvim_create_autocmd({ "InsertLeave", "TextChanged" }, {
   pattern = "*",
   command = "silent! write",
 })
+
+vim.g.root_spec = { "cwd" }
 
 -- function Transparent(color)
 --   color = zephyr
