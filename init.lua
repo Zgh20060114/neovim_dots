@@ -35,10 +35,11 @@ vim.keymap.set("v", "<leader>(", "c()<Esc>P", { desc = "Wrap selection with ()" 
 vim.keymap.set("v", '<leader>"', 'c""<Esc>P', { desc = 'Wrap selection with "' })
 vim.keymap.set("v", "<leader>'", "c''<Esc>P", { desc = "Wrap selection with '" })
 -- vim.api.nvim_set_keymap("n", "<C-a>", "ggVG", { noremap = true, silent = true })
-vim.api.nvim_create_autocmd({ "InsertLeave", "TextChanged" }, {
-  pattern = "*",
-  command = "silent! write",
-})
+
+-- vim.api.nvim_create_autocmd({ "InsertLeave", "TextChanged" }, {
+--   pattern = "*",
+--   command = "silent! write",
+-- })
 
 vim.g.root_spec = { "cwd" }
 
